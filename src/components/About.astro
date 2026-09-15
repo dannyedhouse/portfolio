@@ -1,0 +1,120 @@
+<section id="about">
+  <h2>About</h2>
+  <div class="kicker">Subheading</div>
+  <div class="rule"></div>
+  <div class="grid">
+    <div class="copy">
+      <p>
+        Currently a Software Engineer.
+      </p>
+    </div>
+    <div class="meta">
+      <div>
+        <div class="label">Currently</div>
+        <div class="value">Software Engineer<br />London, UK</div>
+        <div class="hair"></div>
+      </div>
+      <div>
+        <div class="label">Interests</div>
+        <div class="value">
+          Product Development<br />System Design<br />Data & Analytics<br />Good Coffee
+        </div>
+        <div class="hair"></div>
+      </div>
+      <div>
+        <div class="label">Tools</div>
+        <div class="value">TypeScript<br />React<br />Node.js<br />PostgreSQL<br />Docker<br />AWS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #about {
+    position: relative;
+    padding: clamp(70px, 12vh, 130px) clamp(26px, 4vw, 54px) clamp(70px, 12vh, 130px)
+      clamp(34px, 5vw, 78px);
+    border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(38px, 7vw, 96px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-shadow:
+      2.5px 0 color-mix(in srgb, var(--mg) 55%, transparent),
+      -2.5px 0 color-mix(in srgb, var(--cy) 55%, transparent);
+  }
+
+  .kicker {
+    margin-top: 16px;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .rule {
+    margin-top: 14px;
+    width: 34px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  .grid {
+    margin-top: clamp(34px, 6vh, 64px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: clamp(30px, 6vw, 90px);
+    align-items: start;
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    font-size: 14.5px;
+    line-height: 1.95;
+    color: var(--copy);
+    max-width: 60ch;
+  }
+
+  .copy p {
+    margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    font-size: 13.5px;
+    line-height: 1.8;
+  }
+
+  .label {
+    letter-spacing: 0.18em;
+    color: var(--mg);
+    text-transform: uppercase;
+  }
+
+  .value {
+    margin-top: 8px;
+    color: var(--copy);
+  }
+
+  .hair {
+    margin-top: 14px;
+    width: 22px;
+    height: 2px;
+    background: color-mix(in srgb, var(--ink) 35%, transparent);
+  }
+
+  @media (max-width: 800px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
