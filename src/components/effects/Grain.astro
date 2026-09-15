@@ -1,0 +1,21 @@
+<div class="grain" aria-hidden="true"></div>
+
+<style>
+  .grain {
+    pointer-events: none;
+    position: fixed;
+    inset: -40px;
+    z-index: var(--z-grain);
+    opacity: 0.16;
+    mix-blend-mode: multiply;
+    background-image:
+      radial-gradient(#4a463f 0.6px, transparent 0.7px),
+      radial-gradient(#4a463f 0.5px, transparent 0.6px);
+    background-size:
+      3px 3px,
+      5px 5px;
+    background-position:
+      0 0,
+      2px 1px;
+  }
+</style>

@@ -1,0 +1,23 @@
+<div class="rail" aria-hidden="true">
+  <span style="flex: 1.2; background: var(--dust)"></span>
+  <span style="flex: 0.85; background: var(--amber)"></span>
+  <span style="flex: 0.85; background: var(--cy)"></span>
+  <span style="flex: 0.85; background: var(--red)"></span>
+  <span style="flex: 0.85; background: var(--mg)"></span>
+  <span style="flex: 0.85; background: var(--plum)"></span>
+  <span style="flex: 2.4; background: var(--dust)"></span>
+</div>
+
+<style>
+  .rail {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: clamp(10px, 1.5vw, 18px);
+    z-index: var(--z-rail);
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

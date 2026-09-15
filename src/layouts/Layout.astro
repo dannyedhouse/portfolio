@@ -1,6 +1,9 @@
 ---
+import shareTechMono from '../fonts/share-tech-mono.woff2?url';
 import '../styles/tokens.css';
 import '../styles/globals.css';
+import Grain from '../components/effects/Grain.astro';
+import ColorRail from '../components/effects/ColorRail.astro';
 
 interface Props {
   title?: string;
@@ -9,6 +12,7 @@ interface Props {
 
 const {
   title = 'Danny Edhouse',
+  description = 'Portion website',
 } = Astro.props;
 ---
 
@@ -19,10 +23,13 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={shareTechMono} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
   <body>
+    <Grain />
+    <ColorRail />
     <slot />
   </body>
 </html>

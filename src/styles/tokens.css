@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/archivo-black.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/share-tech-mono.woff2') format('woff2');
+}
+
 :root {
   --paper: #ece7dc;
   --ink: #141210;
@@ -8,6 +24,10 @@
   --plum: #5e1a4a;
   --grey: #8e8b85;
   --copy: #2b2a27;
+  --dust: #cec8bc;
+  --red: #d93b3b;
   --display: 'Archivo Black', 'Arial Black', sans-serif;
   --mono: 'Share Tech Mono', ui-monospace, monospace;
+  --z-grain: 90;
+  --z-rail: 93;
 }
