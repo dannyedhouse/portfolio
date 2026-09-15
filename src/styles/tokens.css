@@ -29,5 +29,7 @@
   --display: 'Archivo Black', 'Arial Black', sans-serif;
   --mono: 'Share Tech Mono', ui-monospace, monospace;
   --z-grain: 90;
+  --z-scan: 91;
+  --z-vignette: 92;
   --z-rail: 93;
 }
