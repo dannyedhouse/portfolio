@@ -124,7 +124,7 @@ import vhsMark from '../../assets/VHS.webp';
   .vhs {
     display: block;
     width: auto;
-    height: 42px;
+    height: clamp(24px, 7vw, 42px);
   }
 
   .meta {
@@ -175,6 +175,16 @@ import vhsMark from '../../assets/VHS.webp';
     h1,
     .scroll {
       animation: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .arrow {
+      display: none;
+    }
+
+    .ident {
+      font-size: clamp(26px, 8.4vw, 42px);
     }
   }
 </style>

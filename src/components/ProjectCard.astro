@@ -196,8 +196,18 @@ const codeHref = typeof code === 'string' ? code : undefined
       order: 0;
     }
 
+    article:not(:first-child) {
+      border-top: 1px solid var(--hair);
+      padding-top: 44px;
+      margin-top: 44px;
+    }
+
     .stage {
       width: 100%;
+    }
+
+    .chin {
+      padding: 7px 4px 8px;
     }
   }
 </style>

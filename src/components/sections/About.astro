@@ -271,9 +271,42 @@ const experienceYears = yearsSince(CAREER_START)
   }
 
   @media (max-width: 800px) {
-    .grid,
-    .plate dl {
+    .grid {
       grid-template-columns: 1fr;
+    }
+
+    .main {
+      gap: 20px;
+    }
+
+    .plate {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    }
+
+    .chroma {
+      height: 4px;
+    }
+
+    .head {
+      display: none;
+    }
+
+    .plate dl {
+      gap: 12px 18px;
+      padding: 14px 14px 12px;
+    }
+
+    dt {
+      font-size: 10px;
+    }
+
+    dd {
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .foot {
+      padding: 10px 14px;
     }
   }
 </style>
