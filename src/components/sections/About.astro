@@ -1,6 +1,18 @@
 ---
 import TechPills from '../TechPills.astro'
 import { aboutSkills } from '../../data/skills'
+
+const CAREER_START = '2021-09-07'
+
+const yearsSince = (iso: string, now = new Date()) => {
+  const start = new Date(`${iso}T00:00:00`)
+  let years = now.getFullYear() - start.getFullYear()
+  const month = now.getMonth() - start.getMonth()
+  if (month < 0 || (month === 0 && now.getDate() < start.getDate())) years -= 1
+  return Math.max(years, 0)
+}
+
+const experienceYears = yearsSince(CAREER_START)
 ---
 
 <section id="about">
@@ -8,28 +20,62 @@ import { aboutSkills } from '../../data/skills'
   <div class="kicker">Nice to meet you</div>
   <div class="rule"></div>
   <div class="grid">
-    <div class="copy">
-      <p>
-        I'm Danny, a Software Engineer based in London who enjoys bringing engineering and design together. I build full-stack products with a focus on usability, accessibility and a keen attention to detail.
-      </p>
+    <div class="main">
+      <div class="copy">
+        <p>
+          I'm Danny, a Software Engineer based in London who enjoys bringing engineering and design together. I build full-stack products with a focus on usability, accessibility and a keen attention to detail.
+        </p>
+      </div>
+      <article class="plate">
+        <div class="chroma" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="head">
+          <span class="rec"><i></i> REC</span>
+        </div>
+        <dl>
+          <div>
+            <dt>Position</dt>
+            <dd>Software Engineer</dd>
+          </div>
+          <div>
+            <dt>Experience</dt>
+            <dd>
+              <span data-career-start={CAREER_START}>{experienceYears}+ years</span>
+            </dd>
+          </div>
+          <div>
+            <dt>Company</dt>
+            <dd>CGI</dd>
+          </div>
+          <div>
+            <dt>Degree</dt>
+            <dd>First in Computer Science</dd>
+          </div>
+        </dl>
+        <div class="foot">
+          <span>Location</span>
+          London, UK
+        </div>
+      </article>
     </div>
     <div class="meta">
       <div>
-        <div class="label">Currently</div>
-        <div class="value">Software Engineer<br />London, UK</div>
+        <div class="label">Stack</div>
+        <div class="value">
+          <TechPills items={aboutSkills} />
+        </div>
         <div class="hair"></div>
       </div>
       <div>
         <div class="label">Interests</div>
         <div class="value">
           Product Development<br />System Design<br />Data & Analytics<br />Good Coffee
-        </div>
-        <div class="hair"></div>
-      </div>
-      <div>
-        <div class="label">Skills</div>
-        <div class="value">
-          <TechPills items={aboutSkills} />
         </div>
       </div>
     </div>
@@ -76,10 +122,13 @@ import { aboutSkills } from '../../data/skills'
     align-items: start;
   }
 
-  .copy {
+  .main {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 28px;
+  }
+
+  .copy {
     font-size: 14.5px;
     line-height: 1.95;
     color: var(--copy);
@@ -88,6 +137,111 @@ import { aboutSkills } from '../../data/skills'
 
   .copy p {
     margin: 0;
+  }
+
+  .plate {
+    max-width: 36rem;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--ink) 5%, var(--paper));
+    border: 1px solid var(--ink);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  }
+
+  .chroma {
+    display: flex;
+    height: 7px;
+  }
+
+  .chroma span:nth-child(1) {
+    flex: 1.1;
+    background: color-mix(in srgb, var(--ink) 10%, var(--paper));
+  }
+
+  .chroma span:nth-child(2) {
+    flex: 0.7;
+    background: color-mix(in srgb, var(--ink) 22%, var(--paper));
+  }
+
+  .chroma span:nth-child(3) {
+    flex: 0.7;
+    background: color-mix(in srgb, var(--ink) 38%, var(--paper));
+  }
+
+  .chroma span:nth-child(4) {
+    flex: 0.7;
+    background: var(--ink);
+  }
+
+  .chroma span:nth-child(5) {
+    flex: 0.7;
+    background: color-mix(in srgb, var(--ink) 18%, var(--paper));
+  }
+
+  .chroma span:nth-child(6) {
+    flex: 1.4;
+    background: var(--dust);
+  }
+
+  .head,
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 18px;
+    font-size: 11px;
+    letter-spacing: var(--track);
+    text-transform: uppercase;
+  }
+
+  .head {
+    color: var(--mid);
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .rec {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink);
+  }
+
+  .rec i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  .plate dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+    margin: 0;
+    padding: 18px 18px 16px;
+  }
+
+  dt {
+    letter-spacing: var(--track);
+    color: var(--mg);
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+
+  dd {
+    margin: 7px 0 0;
+    color: var(--copy);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .foot {
+    border-top: 1px solid var(--stroke);
+    color: var(--copy);
+  }
+
+  .foot span {
+    color: var(--mg);
   }
 
   .meta {
@@ -117,8 +271,22 @@ import { aboutSkills } from '../../data/skills'
   }
 
   @media (max-width: 800px) {
-    .grid {
+    .grid,
+    .plate dl {
       grid-template-columns: 1fr;
     }
   }
 </style>
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-career-start]')
+  const iso = el?.dataset.careerStart
+  if (el && iso) {
+    const start = new Date(`${iso}T00:00:00`)
+    const now = new Date()
+    let years = now.getFullYear() - start.getFullYear()
+    const month = now.getMonth() - start.getMonth()
+    if (month < 0 || (month === 0 && now.getDate() < start.getDate())) years -= 1
+    el.textContent = `${Math.max(years, 0)}+ years`
+  }
+</script>
