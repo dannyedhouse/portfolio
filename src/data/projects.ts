@@ -1,7 +1,8 @@
 import type { ImageMetadata } from 'astro'
-import birthdayDesktop from '../assets/birthday-freebies.png'
+import birthdayFreebies from '../assets/birthday-freebies.png'
 import myGTAGarage from '../assets/mygtagarage.png'
 import VHS from '../assets/vhs-tapes.png'
+import type { SkillId } from './skills'
 
 export type Project = {
   id: string
@@ -10,11 +11,11 @@ export type Project = {
   rec: 'mg' | 'cy'
   title: string
   blurb: string
-  stack: string[]
+  stack: SkillId[]
   href?: string
+  code?: string | true
   flip?: boolean
-  desktop?: ImageMetadata
-  mobile?: ImageMetadata
+  image?: ImageMetadata
 }
 
 export const projects: Project[] = [
@@ -26,9 +27,9 @@ export const projects: Project[] = [
     title: 'Birthday Freebies',
     blurb:
       'Showcasing UK birthday freebies and discounts, now visited by around 5k users a month through organic growth.',
-    stack: ['WEB', 'EDITORIAL', 'UK RETAIL'],
+    stack: ['typescript', 'react', 'nextjs', 'tailwind', 'sanity'],
     href: 'https://birthdayfreebie.co.uk/',
-    desktop: birthdayDesktop,
+    image: birthdayFreebies,
   },
   {
     id: 'gta-garage',
@@ -37,10 +38,10 @@ export const projects: Project[] = [
     rec: 'cy',
     title: 'MyGTAGarage',
     blurb: 'A tool to allow players of GTA Online to organise their vehicles and garages, with drag and drop and export options.',
-    stack: [],
+    stack: ['typescript', 'react', 'tailwind', 'vite', 'playwright'],
     flip: true,
     href: 'https://mygtagarage.com/',
-    desktop: myGTAGarage
+    image: myGTAGarage,
   },
   {
     id: 'portfolio',
@@ -49,7 +50,8 @@ export const projects: Project[] = [
     rec: 'cy',
     title: 'Portfolio v1.0',
     blurb: 'My personal portfolio site, developed using Astro and inspired by retro VHS tape designs.',
-    stack: [],
-    desktop: VHS
+    stack: ['astro', 'typescript', 'css', 'vite'],
+    code: 'https://github.com/dannyedhouse/portfolio',
+    image: VHS,
   },
 ]

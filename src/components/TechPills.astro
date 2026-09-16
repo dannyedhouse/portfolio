@@ -1,0 +1,58 @@
+---
+import { Icon } from 'astro-icon/components'
+import { skillCatalog, type SkillId } from '../data/skills'
+
+interface Props {
+  items: readonly SkillId[]
+}
+
+const { items } = Astro.props
+---
+
+{
+  items.length > 0 && (
+    <ul class="pills">
+      {items.map((id) => {
+        const skill = skillCatalog[id]
+        return (
+          <li>
+            <Icon name={skill.icon} size={15} aria-hidden="true" />
+            <span>{skill.label}</span>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+<style>
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px 7px 9px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  li :global(svg) {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    fill: currentColor;
+  }
+</style>

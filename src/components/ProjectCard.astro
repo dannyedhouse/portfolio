@@ -1,34 +1,37 @@
 ---
 import { Picture } from 'astro:assets'
 import type { Project } from '../data/projects'
+import ActionLink from './ActionLink.astro'
+import TechPills from './TechPills.astro'
 
 interface Props {
   project: Project
 }
 
 const { project } = Astro.props
-const { index, kind, title, blurb, stack, href, flip = false, desktop } = project
+const { index, kind, title, blurb, stack, href, code, flip = false, image } = project
+const codeHref = typeof code === 'string' ? code : undefined
 ---
 
 <article class:list={{ flip }} data-project>
   <div class="stage">
     <div class="crt">
       <div class="bezel">
-        <div class:list={['glass', { shot: desktop }]}>
-          {desktop ? (
+        <div class:list={['glass', { shot: image }]}>
+          {image ? (
             <Picture
-              src={desktop}
+              src={image}
               formats={['avif', 'webp']}
               fallbackFormat="webp"
               widths={[720, 1100, 1440]}
               sizes="(max-width: 800px) calc(100vw - 52px), min(46vw, 640px)"
-              alt={`${title} on desktop`}
+              alt={title}
               quality={85}
               pictureAttributes={{ class: 'frame' }}
               class="frame-img"
             />
           ) : (
-            <span>Desktop</span>
+            <span>Image</span>
           )}
         </div>
         <div class="chin" aria-hidden="true">
@@ -42,17 +45,12 @@ const { index, kind, title, blurb, stack, href, flip = false, desktop } = projec
     <div class="idx">{index} · {kind}</div>
     <h3>{title}</h3>
     {blurb && <p>{blurb}</p>}
-    {stack.length > 0 && (
-      <div class="stack">
-        {stack.map((item) => (
-          <span>{item}</span>
-        ))}
+    <TechPills items={stack} />
+    {(href || code) && (
+      <div class="acts">
+        {href && <ActionLink href={href} variant="site" label="VISIT SITE ▶" />}
+        {code && <ActionLink href={codeHref} variant="code" label="VIEW CODE" />}
       </div>
-    )}
-    {href && (
-      <a href={href} target="_blank" rel="noreferrer" class="play">
-        VISIT SITE ▶
-      </a>
     )}
   </div>
 </article>
@@ -165,34 +163,11 @@ const { index, kind, title, blurb, stack, href, flip = false, desktop } = projec
     max-width: 46ch;
   }
 
-  .stack {
+  .acts {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    font-size: 11.5px;
-    letter-spacing: 0.12em;
-  }
-
-  .stack span {
-    padding: 7px 12px;
-    border: 1px solid var(--hair);
-  }
-
-  .play {
-    display: inline-flex;
-    align-items: center;
     gap: 10px;
     margin-top: 26px;
-    padding: 11px 18px;
-    background: var(--ink);
-    color: var(--paper);
-    font-size: 12px;
-    letter-spacing: var(--track-nav);
-  }
-
-  .play:hover {
-    background: var(--mg);
-    color: var(--paper);
   }
 
   @media (prefers-reduced-motion: no-preference) {
