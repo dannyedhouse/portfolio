@@ -28,6 +28,21 @@
   --red: #d93b3b;
   --display: 'Archivo Black', 'Arial Black', sans-serif;
   --mono: 'Share Tech Mono', ui-monospace, monospace;
+  --page-inline: clamp(26px, 4vw, 54px);
+  --page-left: clamp(34px, 5vw, 78px);
+  --section-y: clamp(70px, 12vh, 130px);
+  --track: 0.18em;
+  --track-nav: 0.16em;
+  --display-track: -0.02em;
+  --fringe:
+    2.5px 0 color-mix(in srgb, var(--mg) 55%, transparent),
+    -2.5px 0 color-mix(in srgb, var(--cy) 55%, transparent);
+  --fringe-strong:
+    3px 0 color-mix(in srgb, var(--mg) 60%, transparent),
+    -3px 0 color-mix(in srgb, var(--cy) 60%, transparent);
+  --stroke: color-mix(in srgb, var(--ink) 14%, transparent);
+  --hair: color-mix(in srgb, var(--ink) 35%, transparent);
+  --z-nav: 80;
   --z-grain: 90;
   --z-scan: 91;
   --z-vignette: 92;

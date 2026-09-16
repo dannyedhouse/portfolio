@@ -32,9 +32,8 @@
 <style>
   #about {
     position: relative;
-    padding: clamp(70px, 12vh, 130px) clamp(26px, 4vw, 54px) clamp(70px, 12vh, 130px)
-      clamp(34px, 5vw, 78px);
-    border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    padding: var(--section-y) var(--page-inline) var(--section-y) var(--page-left);
+    border-top: 1px solid var(--stroke);
   }
 
   h2 {
@@ -42,17 +41,15 @@
     font-family: var(--display);
     font-size: clamp(38px, 7vw, 96px);
     line-height: 0.9;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--display-track);
     text-transform: uppercase;
-    text-shadow:
-      2.5px 0 color-mix(in srgb, var(--mg) 55%, transparent),
-      -2.5px 0 color-mix(in srgb, var(--cy) 55%, transparent);
+    text-shadow: var(--fringe);
   }
 
   .kicker {
     margin-top: 16px;
     font-size: 13px;
-    letter-spacing: 0.18em;
+    letter-spacing: var(--track);
     text-transform: uppercase;
     color: var(--mid);
   }
@@ -95,7 +92,7 @@
   }
 
   .label {
-    letter-spacing: 0.18em;
+    letter-spacing: var(--track);
     color: var(--mg);
     text-transform: uppercase;
   }
@@ -109,7 +106,7 @@
     margin-top: 14px;
     width: 22px;
     height: 2px;
-    background: color-mix(in srgb, var(--ink) 35%, transparent);
+    background: var(--hair);
   }
 
   @media (max-width: 800px) {

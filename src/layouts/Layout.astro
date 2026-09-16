@@ -5,6 +5,7 @@ import '../styles/tokens.css';
 import '../styles/globals.css';
 import Grain from '../components/effects/Grain.astro';
 import ColorRail from '../components/effects/ColorRail.astro';
+import Nav from '../components/Nav.astro';
 
 interface Props {
   title?: string;
@@ -32,6 +33,7 @@ const {
   <body>
     <Grain />
     <ColorRail />
+    <Nav />
     <slot />
   </body>
 </html>

@@ -1,0 +1,182 @@
+<nav data-site-nav>
+  <div class="brand">
+    <span class="initials">DE</span>
+    <span class="pipe">|</span>
+    <a href="#home" class="play">
+      PLAY <span class="tri">▶</span>
+    </a>
+  </div>
+  <input id="nav-open" class="nav-open" type="checkbox" aria-hidden="true" tabindex="-1" />
+  <label class="nav-toggle" for="nav-open">MENU</label>
+  <div class="links">
+    <a href="#home" class="on">HOME</a>
+    <a href="#about">ABOUT</a>
+    <a href="#projects">PROJECTS</a>
+    <a href="#timeline">TIMELINE</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+</nav>
+
+<script>
+  const nav = document.querySelector('[data-site-nav]')
+  if (nav) {
+    const toggle = nav.querySelector<HTMLInputElement>('.nav-open')
+    const links = [...nav.querySelectorAll<HTMLAnchorElement>('.links a')]
+    const ids = links
+      .map((a) => a.getAttribute('href')?.slice(1) ?? '')
+      .filter((id) => document.getElementById(id))
+
+    const spy = () => {
+      const mid = innerHeight * 0.28
+      let current = ids[0]
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        if (el.getBoundingClientRect().top <= mid) current = id
+      }
+      for (const a of links) {
+        a.classList.toggle('on', a.getAttribute('href') === `#${current}`)
+      }
+    }
+
+    spy()
+    addEventListener('scroll', spy, { passive: true })
+    addEventListener('resize', spy)
+
+    for (const a of links) {
+      a.addEventListener('click', () => {
+        if (toggle) toggle.checked = false
+      })
+    }
+  }
+</script>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-nav);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px var(--page-inline) 20px var(--page-left);
+    font-size: 12.5px;
+    letter-spacing: var(--track-nav);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--paper) 96%, transparent),
+      color-mix(in srgb, var(--paper) 75%, transparent) 70%,
+      transparent
+    );
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .initials {
+    font-family: var(--display);
+    letter-spacing: 0.02em;
+  }
+
+  .pipe {
+    color: var(--grey);
+  }
+
+  .play {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tri {
+    animation: blink 1.6s steps(1) infinite;
+  }
+
+  .nav-open {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+  }
+
+  .nav-toggle {
+    display: none;
+    letter-spacing: var(--track-nav);
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  .links {
+    display: flex;
+    gap: clamp(14px, 2.6vw, 34px);
+  }
+
+  .links a {
+    color: var(--mid);
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+  }
+
+  .links a:hover,
+  .links a.on {
+    color: var(--ink);
+  }
+
+  .links a.on {
+    border-bottom-color: var(--ink);
+  }
+
+  @keyframes blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0.15;
+    }
+  }
+
+  @media (max-width: 799px) {
+    nav {
+      gap: 10px;
+      padding: 14px 16px 14px 28px;
+      font-size: 11px;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      gap: 12px;
+      padding: 8px 0 6px;
+    }
+
+    .nav-open:checked ~ .links {
+      display: flex;
+    }
+
+    nav:has(.nav-open:checked) {
+      background: var(--paper);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tri {
+      animation: none;
+    }
+  }
+</style>
