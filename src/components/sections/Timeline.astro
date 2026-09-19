@@ -1,12 +1,11 @@
 ---
+import SectionHead from '../SectionHead.astro'
 import TechPills from '../ui/TechPills.astro'
 import { timeline } from '../../data/timeline'
 ---
 
-<section id="timeline">
-  <h2>Timeline</h2>
-  <div class="kicker">My journey so far...</div>
-  <div class="rule"></div>
+<section id="timeline" class="sleeve">
+  <SectionHead title="Timeline" kicker="My journey so far..." />
 
   <div class="track" data-track>
     <div class="line" aria-hidden="true">
@@ -33,45 +32,15 @@ import { timeline } from '../../data/timeline'
 </section>
 
 <style>
-  #timeline {
-    position: relative;
-    padding: var(--section-y) var(--page-inline) var(--section-y) var(--page-left);
-    border-top: 1px solid var(--stroke);
-  }
-
-  h2 {
-    margin: 0;
-    font-family: var(--display);
-    font-size: clamp(38px, 7vw, 96px);
-    line-height: 0.9;
-    letter-spacing: var(--display-track);
-    text-transform: uppercase;
-    text-shadow: var(--fringe);
-  }
-
-  .kicker {
-    margin-top: 16px;
-    font-size: 13px;
-    letter-spacing: var(--track);
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-
-  .rule {
-    margin-top: 14px;
-    width: 34px;
-    height: 2px;
-    background: var(--ink);
-  }
-
   .track {
+    --rail: clamp(120px, 15vw, 210px);
     position: relative;
     margin-top: clamp(40px, 7vh, 80px);
   }
 
   .line {
     position: absolute;
-    left: clamp(120px, 15vw, 210px);
+    left: var(--rail);
     top: 8px;
     bottom: 8px;
     width: 1px;
@@ -88,7 +57,7 @@ import { timeline } from '../../data/timeline'
   article {
     position: relative;
     display: grid;
-    grid-template-columns: clamp(120px, 15vw, 210px) minmax(0, 1fr);
+    grid-template-columns: var(--rail) minmax(0, 1fr);
     gap: clamp(26px, 4vw, 56px);
     min-height: 72vh;
     padding-bottom: clamp(64px, 12vh, 140px);
@@ -100,7 +69,7 @@ import { timeline } from '../../data/timeline'
 
   .dot {
     position: absolute;
-    left: clamp(120px, 15vw, 210px);
+    left: var(--rail);
     top: 10px;
     z-index: 1;
     width: 11px;
@@ -186,6 +155,10 @@ import { timeline } from '../../data/timeline'
   }
 
   @media (max-width: 800px) {
+    .track {
+      --rail: 6px;
+    }
+
     article {
       grid-template-columns: 1fr;
       gap: 12px;
@@ -197,42 +170,19 @@ import { timeline } from '../../data/timeline'
       padding-bottom: 0;
     }
 
-    .line,
-    .dot {
-      left: 6px;
+    .when,
+    .body {
+      padding-left: 28px;
     }
 
     .when {
       position: static;
-      padding-left: 28px;
-    }
-
-    .body {
-      padding-left: 28px;
     }
   }
 </style>
 
 <script>
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const chapters = document.querySelectorAll<HTMLElement>('[data-chapter]')
-  if (!reduce) {
-    for (const el of chapters) {
-      const io = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            el.classList.add('in')
-            io.disconnect()
-          } else {
-            el.classList.add('wait')
-          }
-        },
-        { threshold: 0.16, rootMargin: '0px 0px -10% 0px' },
-      )
-      io.observe(el)
-    }
-  }
-
   const track = document.querySelector<HTMLElement>('[data-track]')
   const fill = track?.querySelector<HTMLElement>('.fill')
   if (track && fill) {

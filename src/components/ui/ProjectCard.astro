@@ -10,7 +10,6 @@ interface Props {
 
 const { project } = Astro.props
 const { index, kind, title, blurb, stack, href, code, flip = false, image } = project
-const codeHref = typeof code === 'string' ? code : undefined
 ---
 
 <article class:list={{ flip }} data-project>
@@ -18,7 +17,7 @@ const codeHref = typeof code === 'string' ? code : undefined
     <div class="crt">
       <div class="bezel">
         <div class:list={['glass', { shot: image }]}>
-          {image ? (
+          {image && (
             <Picture
               src={image}
               formats={['avif', 'webp']}
@@ -30,8 +29,6 @@ const codeHref = typeof code === 'string' ? code : undefined
               pictureAttributes={{ class: 'frame' }}
               class="frame-img"
             />
-          ) : (
-            <span>Image</span>
           )}
         </div>
         <div class="chin" aria-hidden="true">
@@ -49,7 +46,7 @@ const codeHref = typeof code === 'string' ? code : undefined
     {(href || code) && (
       <div class="acts">
         {href && <ActionLink href={href} variant="site" label="VISIT SITE ▶" />}
-        {code && <ActionLink href={codeHref} variant="code" label="VIEW CODE" />}
+        {code && <ActionLink href={code} variant="code" label="VIEW CODE" />}
       </div>
     )}
   </div>
@@ -94,16 +91,6 @@ const codeHref = typeof code === 'string' ? code : undefined
 
   .glass:not(.shot) {
     aspect-ratio: 2 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .glass span {
-    font-size: 11px;
-    letter-spacing: var(--track);
-    text-transform: uppercase;
-    color: var(--grey);
   }
 
   .chin {
@@ -211,24 +198,3 @@ const codeHref = typeof code === 'string' ? code : undefined
     }
   }
 </style>
-
-<script>
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  if (!reduce) {
-    const cards = document.querySelectorAll<HTMLElement>('[data-project]')
-    for (const el of cards) {
-      const io = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            el.classList.add('in')
-            io.disconnect()
-          } else {
-            el.classList.add('wait')
-          }
-        },
-        { threshold: 0.16, rootMargin: '0px 0px -12% 0px' },
-      )
-      io.observe(el)
-    }
-  }
-</script>

@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components'
 
 interface Props {
-  href?: string
+  href: string
   variant?: 'site' | 'code'
   label: string
 }
@@ -11,19 +11,10 @@ const { href, variant = 'site', label } = Astro.props
 const icon = variant === 'code' ? 'simple-icons:github' : undefined
 ---
 
-{
-  href ? (
-    <a href={href} target="_blank" rel="noreferrer" class:list={['act', variant]}>
-      {icon && <Icon name={icon} size={14} aria-hidden="true" />}
-      {label}
-    </a>
-  ) : (
-    <span class:list={['act', variant]}>
-      {icon && <Icon name={icon} size={14} aria-hidden="true" />}
-      {label}
-    </span>
-  )
-}
+<a href={href} target="_blank" rel="noreferrer" class:list={['act', variant]}>
+  {icon && <Icon name={icon} size={14} aria-hidden="true" />}
+  {label}
+</a>
 
 <style>
   .act {

@@ -18,8 +18,8 @@ export const timeline: Chapter[] = [
     company: 'CGI / BJSS',
     current: true,
     lines: [
-      'Working on greenfield projects for globally recognised clients, predominetely working with React, TypeScript and Node.JS',
-      'Included working on the Mastercard Card Design Studio - utilising generative AI to enable custom, compliant card designs with fluid motion animations.'
+      'Working on greenfield projects for globally recognised clients, predominantly with React, TypeScript and Node.JS',
+      'Included working on the Mastercard Card Design Studio - utilising generative AI to enable custom, compliant card designs with fluid motion animations.',
     ],
     stack: ['typescript', 'react', 'nextjs', 'azure'],
   },
@@ -29,8 +29,8 @@ export const timeline: Chapter[] = [
     title: 'Technical Graduate',
     company: 'CGI',
     lines: [
-      'Built a Node.js appliation to view trends in public sector procurement opportunities.',
-      'Worked on a graduate project building a carbon emissions map with personalised reccomendations - built using Angular and Leaflet.js.',
+      'Built a Node.js application to view trends in public sector procurement opportunities.',
+      'Worked on a graduate project building a carbon emissions map with personalised recommendations - built using Angular and Leaflet.js.',
     ],
     stack: ['typescript', 'react', 'node'],
   },

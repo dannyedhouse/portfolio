@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string
+  kicker: string
+}
+
+const { title, kicker } = Astro.props
+---
+
+<header>
+  <h2>{title}</h2>
+  <p class="kicker">{kicker}</p>
+  <div class="rule"></div>
+</header>
+
+<style>
+  h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(38px, 7vw, 96px);
+    line-height: 0.9;
+    letter-spacing: var(--display-track);
+    text-transform: uppercase;
+    text-shadow: var(--fringe);
+  }
+
+  .kicker {
+    margin: 16px 0 0;
+    font-size: 13px;
+    letter-spacing: var(--track);
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .rule {
+    margin-top: 14px;
+    width: 34px;
+    height: 2px;
+    background: var(--ink);
+  }
+</style>

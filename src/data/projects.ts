@@ -8,12 +8,11 @@ export type Project = {
   id: string
   index: string
   kind: string
-  rec: 'mg' | 'cy'
   title: string
   blurb: string
   stack: SkillId[]
   href?: string
-  code?: string | true
+  code?: string
   flip?: boolean
   image?: ImageMetadata
 }
@@ -23,7 +22,6 @@ export const projects: Project[] = [
     id: 'birthday',
     index: '01',
     kind: 'WEB',
-    rec: 'mg',
     title: 'Birthday Freebies',
     blurb:
       'Showcasing UK birthday freebies and discounts, now visited by around 5k users a month through organic growth.',
@@ -35,9 +33,9 @@ export const projects: Project[] = [
     id: 'gta-garage',
     index: '02',
     kind: 'WEB',
-    rec: 'cy',
     title: 'MyGTAGarage',
-    blurb: 'A tool to allow players of GTA Online to organise their vehicles and garages, with drag and drop and export options.',
+    blurb:
+      'A tool for GTA Online players to organise vehicles and garages, with drag and drop and export.',
     stack: ['typescript', 'react', 'tailwind', 'vite', 'playwright'],
     flip: true,
     href: 'https://mygtagarage.com/',
@@ -47,7 +45,6 @@ export const projects: Project[] = [
     id: 'portfolio',
     index: '03',
     kind: 'WEB',
-    rec: 'cy',
     title: 'Portfolio v1.0',
     blurb: 'My personal portfolio site, developed using Astro and inspired by retro VHS tape designs.',
     stack: ['astro', 'typescript', 'css', 'vite'],

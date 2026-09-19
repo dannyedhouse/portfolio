@@ -1,49 +1,17 @@
 ---
+import SectionHead from '../SectionHead.astro'
 import ProjectCard from '../ui/ProjectCard.astro'
 import { projects } from '../../data/projects'
 ---
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="kicker">Selected work</div>
-  <div class="rule"></div>
+<section id="projects" class="sleeve">
+  <SectionHead title="Projects" kicker="Some of my personal projects" />
   <div class="list">
     {projects.map((project) => <ProjectCard project={project} />)}
   </div>
 </section>
 
 <style>
-  #projects {
-    position: relative;
-    padding: var(--section-y) var(--page-inline) var(--section-y) var(--page-left);
-    border-top: 1px solid var(--stroke);
-  }
-
-  h2 {
-    margin: 0;
-    font-family: var(--display);
-    font-size: clamp(38px, 7vw, 96px);
-    line-height: 0.9;
-    letter-spacing: var(--display-track);
-    text-transform: uppercase;
-    text-shadow: var(--fringe);
-  }
-
-  .kicker {
-    margin-top: 16px;
-    font-size: 13px;
-    letter-spacing: var(--track);
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-
-  .rule {
-    margin-top: 14px;
-    width: 34px;
-    height: 2px;
-    background: var(--ink);
-  }
-
   .list {
     margin-top: clamp(40px, 7vh, 80px);
     display: flex;

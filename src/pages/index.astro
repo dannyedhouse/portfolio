@@ -12,3 +12,9 @@ import Timeline from '../components/sections/Timeline.astro';
   <Projects />
   <Timeline />
 </Layout>
+
+<script>
+  import { reveal } from '../lib/reveal'
+
+  reveal('[data-project], [data-chapter]')
+</script>

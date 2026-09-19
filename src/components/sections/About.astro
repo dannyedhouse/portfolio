@@ -1,131 +1,101 @@
 ---
+import SectionHead from '../SectionHead.astro'
 import TechPills from '../ui/TechPills.astro'
+import Interests from '../ui/Interests.astro'
 import { aboutProficient, aboutSkills } from '../../data/skills'
-
-const CAREER_START = '2021-09-07'
-
-const yearsSince = (iso: string, now = new Date()) => {
-  const start = new Date(`${iso}T00:00:00`)
-  let years = now.getFullYear() - start.getFullYear()
-  const month = now.getMonth() - start.getMonth()
-  if (month < 0 || (month === 0 && now.getDate() < start.getDate())) years -= 1
-  return Math.max(years, 0)
-}
+import { CAREER_START, yearsSince } from '../../lib/dates'
 
 const experienceYears = yearsSince(CAREER_START)
 ---
 
-<section id="about">
-  <h2>About</h2>
-  <div class="kicker">Nice to meet you</div>
-  <div class="rule"></div>
-  <div class="grid">
-    <div class="main">
-      <div class="copy">
-        <p>
-          I'm Danny, a Software Engineer based in London who enjoys bringing engineering and design together. I build full-stack products with a focus on usability, accessibility and a keen attention to detail.
-        </p>
-      </div>
-      <article class="plate">
-        <div class="chroma" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="head">
-          <span class="rec"><i></i> REC</span>
-        </div>
-        <dl>
-          <div>
-            <dt>Position</dt>
-              <dd>Senior Software Engineer</dd>
-          </div>
-          <div>
-            <dt>Experience</dt>
-            <dd>
-              <span data-career-start={CAREER_START}>{experienceYears}+ years</span>
-            </dd>
-          </div>
-          <div>
-            <dt>Company</dt>
-            <dd>CGI</dd>
-          </div>
-          <div>
-            <dt>Degree</dt>
-            <dd>First-Class, Computer Science</dd>
-          </div>
-        </dl>
-        <div class="foot">
-          <span>Location</span>
-          London, UK
-        </div>
-      </article>
+<section id="about" class="sleeve">
+  <div class="lead">
+    <div class="band">
+      <SectionHead title="About" kicker="Nice to meet you" />
     </div>
-    <div class="meta">
-      <div>
-        <div class="label">Stack</div>
-        <div class="value">
-          <TechPills items={aboutSkills} proficient={aboutProficient} />
+    <div class="hobby">
+      <div class="label">Outside work</div>
+      <Interests />
+    </div>
+  </div>
+  <div class="main">
+    <div class="copy">
+      <p>
+        I'm Danny, a Software Engineer based in London who enjoys bringing engineering and design together. I build full-stack products with a focus on usability, accessibility and a keen attention to detail.
+      </p>
+    </div>
+    <article class="plate">
+      <div class="chroma" aria-hidden="true"></div>
+      <dl>
+        <div>
+          <dt>Position</dt>
+          <dd>Senior Software Engineer</dd>
         </div>
-        <div class="hair"></div>
-      </div>
-      <div>
-        <div class="label">Interests</div>
-        <div class="value">
-          Product Development<br />System Design<br />Data & Analytics<br />Good Coffee
+        <div>
+          <dt>Experience</dt>
+          <dd>
+            <span data-career-start={CAREER_START}>{experienceYears}+ years</span>
+          </dd>
         </div>
+        <div>
+          <dt>Company</dt>
+          <dd>CGI</dd>
+        </div>
+        <div>
+          <dt>Degree</dt>
+          <dd>First-Class, Computer Science</dd>
+        </div>
+      </dl>
+      <div class="foot">
+        <span>Location</span>
+        London, UK
       </div>
+    </article>
+  </div>
+  <div class="meta">
+    <div class="label">Stack</div>
+    <div class="value">
+      <TechPills items={aboutSkills} proficient={aboutProficient} />
     </div>
   </div>
 </section>
 
 <style>
   #about {
-    position: relative;
-    padding: var(--section-y) var(--page-inline) var(--section-y) var(--page-left);
-    border-top: 1px solid var(--stroke);
-  }
-
-  h2 {
-    margin: 0;
-    font-family: var(--display);
-    font-size: clamp(38px, 7vw, 96px);
-    line-height: 0.9;
-    letter-spacing: var(--display-track);
-    text-transform: uppercase;
-    text-shadow: var(--fringe);
-  }
-
-  .kicker {
-    margin-top: 16px;
-    font-size: 13px;
-    letter-spacing: var(--track);
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-
-  .rule {
-    margin-top: 14px;
-    width: 34px;
-    height: 2px;
-    background: var(--ink);
-  }
-
-  .grid {
-    margin-top: clamp(34px, 6vh, 64px);
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-    gap: clamp(30px, 6vw, 90px);
-    align-items: start;
+    column-gap: clamp(30px, 6vw, 90px);
+  }
+
+  .lead {
+    display: contents;
+  }
+
+  .band {
+    grid-column: 1 / -1;
   }
 
   .main {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    margin-top: clamp(34px, 6vh, 64px);
     display: flex;
     flex-direction: column;
     gap: 28px;
+  }
+
+  .meta {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: clamp(34px, 6vh, 64px);
+    font-size: 13.5px;
+    line-height: 1.8;
+  }
+
+  .hobby {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 26px;
   }
 
   .copy {
@@ -148,41 +118,16 @@ const experienceYears = yearsSince(CAREER_START)
   }
 
   .chroma {
-    display: flex;
-    height: 7px;
+    height: 6px;
+    background: linear-gradient(
+      90deg,
+      var(--dust),
+      color-mix(in srgb, var(--ink) 55%, var(--paper)) 42%,
+      var(--ink) 58%,
+      var(--dust)
+    );
   }
 
-  .chroma span:nth-child(1) {
-    flex: 1.1;
-    background: color-mix(in srgb, var(--ink) 10%, var(--paper));
-  }
-
-  .chroma span:nth-child(2) {
-    flex: 0.7;
-    background: color-mix(in srgb, var(--ink) 22%, var(--paper));
-  }
-
-  .chroma span:nth-child(3) {
-    flex: 0.7;
-    background: color-mix(in srgb, var(--ink) 38%, var(--paper));
-  }
-
-  .chroma span:nth-child(4) {
-    flex: 0.7;
-    background: var(--ink);
-  }
-
-  .chroma span:nth-child(5) {
-    flex: 0.7;
-    background: color-mix(in srgb, var(--ink) 18%, var(--paper));
-  }
-
-  .chroma span:nth-child(6) {
-    flex: 1.4;
-    background: var(--dust);
-  }
-
-  .head,
   .foot {
     display: flex;
     align-items: center;
@@ -192,25 +137,12 @@ const experienceYears = yearsSince(CAREER_START)
     font-size: 11px;
     letter-spacing: var(--track);
     text-transform: uppercase;
+    border-top: 1px solid var(--stroke);
+    color: var(--copy);
   }
 
-  .head {
-    color: var(--mid);
-    border-bottom: 1px solid var(--stroke);
-  }
-
-  .rec {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--ink);
-  }
-
-  .rec i {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--ink);
+  .foot span {
+    color: var(--mg);
   }
 
   .plate dl {
@@ -235,23 +167,6 @@ const experienceYears = yearsSince(CAREER_START)
     line-height: 1.4;
   }
 
-  .foot {
-    border-top: 1px solid var(--stroke);
-    color: var(--copy);
-  }
-
-  .foot span {
-    color: var(--mg);
-  }
-
-  .meta {
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
-    font-size: 13.5px;
-    line-height: 1.8;
-  }
-
   .label {
     letter-spacing: var(--track);
     color: var(--mg);
@@ -263,20 +178,48 @@ const experienceYears = yearsSince(CAREER_START)
     color: var(--copy);
   }
 
-  .hair {
-    margin-top: 14px;
-    width: 22px;
-    height: 2px;
-    background: var(--hair);
-  }
-
   @media (max-width: 800px) {
-    .grid {
+    #about {
       grid-template-columns: 1fr;
     }
 
+    .lead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-column: 1;
+      grid-row: 1;
+      align-items: start;
+      column-gap: 8px;
+    }
+
+    .band {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+    }
+
+    .hobby {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      align-self: start;
+      margin: 0;
+      width: clamp(82px, 28vw, 120px);
+    }
+
+    .hobby .label {
+      display: none;
+    }
+
     .main {
+      grid-column: 1;
+      grid-row: 2;
       gap: 20px;
+    }
+
+    .meta {
+      grid-column: 1;
+      grid-row: 3;
     }
 
     .plate {
@@ -285,10 +228,6 @@ const experienceYears = yearsSince(CAREER_START)
 
     .chroma {
       height: 4px;
-    }
-
-    .head {
-      display: none;
     }
 
     .plate dl {
@@ -312,14 +251,9 @@ const experienceYears = yearsSince(CAREER_START)
 </style>
 
 <script>
+  import { yearsSince } from '../../lib/dates'
+
   const el = document.querySelector<HTMLElement>('[data-career-start]')
   const iso = el?.dataset.careerStart
-  if (el && iso) {
-    const start = new Date(`${iso}T00:00:00`)
-    const now = new Date()
-    let years = now.getFullYear() - start.getFullYear()
-    const month = now.getMonth() - start.getMonth()
-    if (month < 0 || (month === 0 && now.getDate() < start.getDate())) years -= 1
-    el.textContent = `${Math.max(years, 0)}+ years`
-  }
+  if (el && iso) el.textContent = `${yearsSince(iso)}+ years`
 </script>
