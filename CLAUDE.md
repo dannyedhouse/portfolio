@@ -18,13 +18,13 @@ Icons: `astro-icon` + Simple Icons. Images: `astro:assets` `Picture`. Skills go 
 
 ## Layout
 
-- `src/components/sections/` — Hero, About, Projects, Timeline
+- `src/components/sections/` — Hero, About, Projects, Timeline, Contact
 - `src/components/ui/` — ActionLink, TechPills, ProjectCard
 - `src/components/effects/` — Grain, ColorRail
-- `src/data/` — projects, timeline, skills
+- `src/data/` — projects, timeline, skills, info
 - `src/lib/` — `dates.ts`, `reveal.ts`
 
-Sections share `SectionHead` + `.sleeve`. Nav stays chrome, not in `ui/`. Contact isn't built — don't add a dead `#contact` link.
+Sections share `SectionHead` + `.sleeve`. Nav stays chrome, not in `ui/`.
 
 ## How to build
 

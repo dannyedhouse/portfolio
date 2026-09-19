@@ -2,28 +2,55 @@
 import { Icon } from 'astro-icon/components'
 
 interface Props {
-  href: string
+  href?: string
   variant?: 'site' | 'code'
   label: string
+  icon?: string | false
+  copy?: string
+  hint?: 'external'
 }
 
-const { href, variant = 'site', label } = Astro.props
-const icon = variant === 'code' ? 'simple-icons:github' : undefined
+const { href, variant = 'site', label, icon, copy, hint } = Astro.props
+const external = !!href && /^https?:/.test(href)
+const iconName = icon === false ? undefined : (icon ?? (variant === 'code' && !copy ? 'simple-icons:github' : undefined))
+const mark = hint === 'external' ? '↗' : undefined
 ---
 
-<a href={href} target="_blank" rel="noreferrer" class:list={['act', variant]}>
-  {icon && <Icon name={icon} size={14} aria-hidden="true" />}
-  {label}
-</a>
+{
+  copy ? (
+    <button type="button" class:list={['act', variant]} data-copy={copy}>
+      {label}
+    </button>
+  ) : (
+    <a
+      href={href}
+      class:list={['act', variant]}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noreferrer' : undefined}
+    >
+      {iconName && <Icon name={iconName} size={14} aria-hidden="true" />}
+      {label}
+      {mark && (
+        <span class="mark" aria-hidden="true">
+          {mark}
+        </span>
+      )}
+    </a>
+  )
+}
 
 <style>
   .act {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 11px 18px;
+    font: inherit;
     font-size: 12px;
     letter-spacing: var(--track-nav);
+    cursor: pointer;
+    border: 0;
   }
 
   .act :global(svg),
@@ -32,6 +59,11 @@ const icon = variant === 'code' ? 'simple-icons:github' : undefined
     height: 14px;
     flex-shrink: 0;
     fill: currentColor;
+  }
+
+  .mark {
+    font-size: 11px;
+    line-height: 1;
   }
 
   .site {
@@ -55,3 +87,25 @@ const icon = variant === 'code' ? 'simple-icons:github' : undefined
     color: var(--paper);
   }
 </style>
+
+<script>
+  for (const el of document.querySelectorAll<HTMLElement>('[data-copy]')) {
+    if (el.dataset.copyBound) continue
+    el.dataset.copyBound = ''
+    el.addEventListener('click', async () => {
+      const value = el.dataset.copy
+      if (!value || !navigator.clipboard) return
+      try {
+        await navigator.clipboard.writeText(value)
+      } catch {
+        return
+      }
+      const label = el.dataset.copyLabel ?? el.textContent?.trim() ?? ''
+      el.dataset.copyLabel = label
+      el.textContent = 'Copied'
+      setTimeout(() => {
+        el.textContent = label
+      }, 1600)
+    })
+  }
+</script>
