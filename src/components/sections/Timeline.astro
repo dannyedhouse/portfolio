@@ -1,0 +1,257 @@
+---
+import TechPills from '../ui/TechPills.astro'
+import { timeline } from '../../data/timeline'
+---
+
+<section id="timeline">
+  <h2>Timeline</h2>
+  <div class="kicker">My journey so far...</div>
+  <div class="rule"></div>
+
+  <div class="track" data-track>
+    <div class="line" aria-hidden="true">
+      <div class="fill"></div>
+    </div>
+    {timeline.map((chapter) => (
+      <article class:list={{ current: chapter.current }} data-chapter>
+        <div class="dot" aria-hidden="true"></div>
+        <div class="when">
+          <div class="year">{chapter.year}</div>
+          <div class="span">{chapter.span}</div>
+        </div>
+        <div class="body">
+          <h3>{chapter.title}</h3>
+          {chapter.company && <div class="co">{chapter.company}</div>}
+          {chapter.lines.map((line) => (
+            <p>{line}</p>
+          ))}
+          <TechPills items={chapter.stack} />
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  #timeline {
+    position: relative;
+    padding: var(--section-y) var(--page-inline) var(--section-y) var(--page-left);
+    border-top: 1px solid var(--stroke);
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(38px, 7vw, 96px);
+    line-height: 0.9;
+    letter-spacing: var(--display-track);
+    text-transform: uppercase;
+    text-shadow: var(--fringe);
+  }
+
+  .kicker {
+    margin-top: 16px;
+    font-size: 13px;
+    letter-spacing: var(--track);
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .rule {
+    margin-top: 14px;
+    width: 34px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  .track {
+    position: relative;
+    margin-top: clamp(40px, 7vh, 80px);
+  }
+
+  .line {
+    position: absolute;
+    left: clamp(120px, 15vw, 210px);
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--hair);
+  }
+
+  .fill {
+    width: 3px;
+    height: 0;
+    margin-left: -1px;
+    background: var(--ink);
+  }
+
+  article {
+    position: relative;
+    display: grid;
+    grid-template-columns: clamp(120px, 15vw, 210px) minmax(0, 1fr);
+    gap: clamp(26px, 4vw, 56px);
+    min-height: 72vh;
+    padding-bottom: clamp(64px, 12vh, 140px);
+  }
+
+  article:last-child {
+    padding-bottom: 24px;
+  }
+
+  .dot {
+    position: absolute;
+    left: clamp(120px, 15vw, 210px);
+    top: 10px;
+    z-index: 1;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: 0 0 0 1px var(--ink);
+    transform: translateX(-5px);
+  }
+
+  article.current .dot {
+    background: var(--ink);
+  }
+
+  .when {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+
+  .year {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: var(--display-track);
+  }
+
+  .span {
+    margin-top: 8px;
+    font-size: 12px;
+    letter-spacing: var(--track);
+    color: var(--mid);
+  }
+
+  .body {
+    padding-left: clamp(18px, 3vw, 40px);
+  }
+
+  h3 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(17px, 1.9vw, 24px);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+
+  .co {
+    margin-top: 8px;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mg);
+  }
+
+  p {
+    margin: 14px 0 0;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--copy);
+    max-width: 54ch;
+  }
+
+  .body :global(.pills) {
+    margin-top: 20px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-chapter].wait .body,
+    [data-chapter].wait .when {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    [data-chapter].wait.in .body,
+    [data-chapter].wait.in .when {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    }
+  }
+
+  @media (max-width: 800px) {
+    article {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      min-height: 0;
+      padding-bottom: 64px;
+    }
+
+    article:last-child {
+      padding-bottom: 0;
+    }
+
+    .line,
+    .dot {
+      left: 6px;
+    }
+
+    .when {
+      position: static;
+      padding-left: 28px;
+    }
+
+    .body {
+      padding-left: 28px;
+    }
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const chapters = document.querySelectorAll<HTMLElement>('[data-chapter]')
+  if (!reduce) {
+    for (const el of chapters) {
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.classList.add('in')
+            io.disconnect()
+          } else {
+            el.classList.add('wait')
+          }
+        },
+        { threshold: 0.16, rootMargin: '0px 0px -10% 0px' },
+      )
+      io.observe(el)
+    }
+  }
+
+  const track = document.querySelector<HTMLElement>('[data-track]')
+  const fill = track?.querySelector<HTMLElement>('.fill')
+  if (track && fill) {
+    const paint = () => {
+      const r = track.getBoundingClientRect()
+      const p = Math.max(0, Math.min(1, (innerHeight * 0.5 - r.top) / r.height))
+      fill.style.height = `${p * r.height}px`
+    }
+
+    if (reduce) {
+      fill.style.height = '100%'
+    } else {
+      let raf = 0
+      const tick = () => {
+        paint()
+        raf = requestAnimationFrame(tick)
+      }
+      raf = requestAnimationFrame(tick)
+      addEventListener('pagehide', () => cancelAnimationFrame(raf), { once: true })
+    }
+  }
+</script>

@@ -1,12 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components'
-import { skillCatalog, type SkillId } from '../data/skills'
+import { skillCatalog, type SkillId } from '../../data/skills'
 
 interface Props {
   items: readonly SkillId[]
+  proficient?: readonly SkillId[]
 }
 
-const { items } = Astro.props
+const { items, proficient = [] } = Astro.props
+const proficientSet = new Set(proficient)
 ---
 
 {
@@ -15,7 +17,7 @@ const { items } = Astro.props
       {items.map((id) => {
         const skill = skillCatalog[id]
         return (
-          <li>
+          <li data-proficient={proficientSet.has(id) ? '' : undefined}>
             <Icon name={skill.icon} size={15} aria-hidden="true" />
             <span>{skill.label}</span>
           </li>
@@ -49,7 +51,13 @@ const { items } = Astro.props
     line-height: 1;
   }
 
-  li :global(svg) {
+  li[data-proficient] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  li :global(svg),
+  li :global(path) {
     width: 15px;
     height: 15px;
     flex-shrink: 0;

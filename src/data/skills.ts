@@ -4,6 +4,8 @@ export const skillCatalog = {
   nextjs: { label: 'Next.js', icon: 'simple-icons:nextdotjs' },
   astro: { label: 'Astro', icon: 'simple-icons:astro' },
   node: { label: 'Node.js', icon: 'simple-icons:nodedotjs' },
+  python: { label: 'Python', icon: 'simple-icons:python' },
+  angular: { label: 'Angular', icon: 'simple-icons:angular' },
   tailwind: { label: 'Tailwind', icon: 'simple-icons:tailwindcss' },
   css: { label: 'CSS', icon: 'simple-icons:css' },
   scss: { label: 'SCSS', icon: 'simple-icons:sass' },
@@ -23,9 +25,11 @@ export type SkillId = keyof typeof skillCatalog
 export const aboutSkills: SkillId[] = [
   'typescript',
   'react',
+  'node',
   'nextjs',
   'astro',
-  'node',
+  'python',
+  'angular',
   'scss',
   'vite',
   'vitest',
@@ -37,3 +41,5 @@ export const aboutSkills: SkillId[] = [
   'docker',
   'azure',
 ]
+
+export const aboutProficient: SkillId[] = ['typescript', 'react', 'node']

@@ -1,6 +1,6 @@
 ---
-import TechPills from '../TechPills.astro'
-import { aboutSkills } from '../../data/skills'
+import TechPills from '../ui/TechPills.astro'
+import { aboutProficient, aboutSkills } from '../../data/skills'
 
 const CAREER_START = '2021-09-07'
 
@@ -41,7 +41,7 @@ const experienceYears = yearsSince(CAREER_START)
         <dl>
           <div>
             <dt>Position</dt>
-            <dd>Software Engineer</dd>
+              <dd>Senior Software Engineer</dd>
           </div>
           <div>
             <dt>Experience</dt>
@@ -55,7 +55,7 @@ const experienceYears = yearsSince(CAREER_START)
           </div>
           <div>
             <dt>Degree</dt>
-            <dd>First in Computer Science</dd>
+            <dd>First-Class, Computer Science</dd>
           </div>
         </dl>
         <div class="foot">
@@ -68,7 +68,7 @@ const experienceYears = yearsSince(CAREER_START)
       <div>
         <div class="label">Stack</div>
         <div class="value">
-          <TechPills items={aboutSkills} />
+          <TechPills items={aboutSkills} proficient={aboutProficient} />
         </div>
         <div class="hair"></div>
       </div>
