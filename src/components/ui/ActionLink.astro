@@ -5,15 +5,16 @@ interface Props {
   href?: string
   variant?: 'site' | 'code'
   label: string
-  icon?: string | false
+  icon?: string
   copy?: string
-  hint?: 'external'
+  mark?: boolean
 }
 
-const { href, variant = 'site', label, icon, copy, hint } = Astro.props
+const { href, variant = 'site', label, icon, copy, mark } = Astro.props
 const external = !!href && /^https?:/.test(href)
-const iconName = icon === false ? undefined : (icon ?? (variant === 'code' && !copy ? 'simple-icons:github' : undefined))
-const mark = hint === 'external' ? '↗' : undefined
+const iconName = copy
+  ? undefined
+  : (icon ?? (variant === 'code' && external ? 'simple-icons:github' : undefined))
 ---
 
 {
@@ -32,7 +33,7 @@ const mark = hint === 'external' ? '↗' : undefined
       {label}
       {mark && (
         <span class="mark" aria-hidden="true">
-          {mark}
+          ↗
         </span>
       )}
     </a>

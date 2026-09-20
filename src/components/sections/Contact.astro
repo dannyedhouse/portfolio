@@ -11,14 +11,8 @@ const year = new Date().getFullYear()
   <p class="offer">Interested in a new project? Say hello!</p>
   <div class="acts">
     <ActionLink variant="site" label="Copy my email" copy={info.email} />
-    <ActionLink href={info.github} variant="code" label="GITHUB" hint="external" />
-    <ActionLink
-      href={info.linkedin}
-      variant="code"
-      icon="simple-icons:linkedin"
-      label="LINKEDIN"
-      hint="external"
-    />
+    <ActionLink href={info.github} variant="code" label="GITHUB" mark />
+    <ActionLink href={info.linkedin} variant="code" icon="simple-icons:linkedin" label="LINKEDIN" mark />
   </div>
   <noscript>
     <p class="fallback">
@@ -27,7 +21,7 @@ const year = new Date().getFullYear()
   </noscript>
   <div class="stop">
     <span>■ STOP · © {year}</span>
-    <ActionLink href="#home" variant="code" icon={false} label="▲ BACK TO TOP" />
+    <ActionLink href="#home" variant="code" label="▲ BACK TO TOP" />
   </div>
 </section>
 
