@@ -1,46 +1,15 @@
-# Astro Starter Kit: Basics
+# 📼 Portfolio Website
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+My personal portfolio, developed using Astro as my first project with the framework, chosen to keep the site performant for its largely static content.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The visual design is inspired by [this albums](https://www.discogs.com/master/1204215-NuLogic-Somewhere-Between-The-Light) artwork and retro VHS tape sleeves 📺
 
-## 🚀 Project Structure
+## 🛠️ Tech Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+![Astro](https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-663399?style=for-the-badge&logo=css&logoColor=white)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## ✨ Features
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- Retro/VHS-inspired visual effects and interactions
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Optimised images (AVIF/WebP) and a small amount of client-side JavaScript
