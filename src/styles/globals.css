@@ -42,6 +42,23 @@ a:hover {
   outline-offset: 3px;
 }
 
+.skip {
+  position: absolute;
+  left: var(--page-left);
+  top: 8px;
+  z-index: calc(var(--z-nav) + 1);
+  padding: 8px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-150%);
+}
+
+.skip:focus,
+.skip:hover {
+  color: var(--paper);
+  transform: none;
+}
+
 .sleeve {
   position: relative;
   padding: var(--section-y) var(--page-inline) var(--section-y) var(--page-left);

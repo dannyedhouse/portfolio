@@ -1,4 +1,4 @@
-<nav data-site-nav>
+<nav data-site-nav aria-label="Primary">
   <div class="brand">
     <span class="initials">DE</span>
     <span class="pipe">|</span>
@@ -6,8 +6,10 @@
       PLAY <span class="tri">▶</span>
     </a>
   </div>
-  <input id="nav-open" class="nav-open" type="checkbox" aria-hidden="true" tabindex="-1" />
-  <label class="nav-toggle" for="nav-open">MENU</label>
+  <label class="nav-toggle">
+    <input class="nav-open" type="checkbox" />
+    MENU
+  </label>
   <div class="links">
     <a href="#home" class="on">HOME</a>
     <a href="#about">ABOUT</a>
@@ -40,8 +42,16 @@
     }
 
     spy()
-    addEventListener('scroll', spy, { passive: true })
-    addEventListener('resize', spy)
+    let raf = 0
+    const onMove = () => {
+      if (raf) return
+      raf = requestAnimationFrame(() => {
+        spy()
+        raf = 0
+      })
+    }
+    addEventListener('scroll', onMove, { passive: true })
+    addEventListener('resize', onMove)
 
     for (const a of links) {
       a.addEventListener('click', () => {
@@ -99,20 +109,22 @@
     animation: blink 1.6s steps(1) infinite;
   }
 
-  .nav-open {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-  }
-
   .nav-toggle {
+    position: relative;
     display: none;
     letter-spacing: var(--track-nav);
     cursor: pointer;
     color: var(--ink);
+  }
+
+  .nav-open {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
   }
 
   .links {
@@ -165,12 +177,17 @@
       padding: 8px 0 6px;
     }
 
-    .nav-open:checked ~ .links {
-      display: flex;
+    .nav-toggle:focus-within {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
     }
 
     nav:has(.nav-open:checked) {
       background: var(--paper);
+    }
+
+    nav:has(.nav-open:checked) .links {
+      display: flex;
     }
   }
 

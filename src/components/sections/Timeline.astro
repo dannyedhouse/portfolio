@@ -196,12 +196,16 @@ import { timeline } from '../../data/timeline'
       fill.style.height = '100%'
     } else {
       let raf = 0
-      const tick = () => {
-        paint()
-        raf = requestAnimationFrame(tick)
+      const onMove = () => {
+        if (raf) return
+        raf = requestAnimationFrame(() => {
+          paint()
+          raf = 0
+        })
       }
-      raf = requestAnimationFrame(tick)
-      addEventListener('pagehide', () => cancelAnimationFrame(raf), { once: true })
+      paint()
+      addEventListener('scroll', onMove, { passive: true })
+      addEventListener('resize', onMove)
     }
   }
 </script>

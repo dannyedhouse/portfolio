@@ -14,9 +14,11 @@
   "dependencies": {
     "@iconify-json/simple-icons": "^1.2.97",
     "astro": "^7.3.2",
-    "astro-icon": "^1.2.0"
+    "astro-icon": "^1.2.0",
+    "sharp": "^0.35.4"
   },
   "allowScripts": {
-    "esbuild": true
+    "esbuild": true,
+    "sharp": true
   }
 }
