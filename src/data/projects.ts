@@ -1,11 +1,10 @@
 import type { ImageMetadata } from 'astro'
 import birthdayFreebies from '../assets/birthday-freebies.png'
 import myGTAGarage from '../assets/mygtagarage.png'
-import VHS from '../assets/vhs-tapes.png'
+import vhsTapes from '../assets/vhs-tapes.png'
 import type { SkillId } from './skills'
 
 export type Project = {
-  id: string
   index: string
   kind: string
   title: string
@@ -14,12 +13,11 @@ export type Project = {
   href?: string
   code?: string
   flip?: boolean
-  image?: ImageMetadata
+  image: ImageMetadata
 }
 
 export const projects: Project[] = [
   {
-    id: 'birthday',
     index: '01',
     kind: 'WEB',
     title: 'Birthday Freebies',
@@ -30,7 +28,6 @@ export const projects: Project[] = [
     image: birthdayFreebies,
   },
   {
-    id: 'gta-garage',
     index: '02',
     kind: 'WEB',
     title: 'MyGTAGarage',
@@ -42,13 +39,12 @@ export const projects: Project[] = [
     image: myGTAGarage,
   },
   {
-    id: 'portfolio',
     index: '03',
     kind: 'WEB',
     title: 'Portfolio v1.0',
     blurb: 'My personal portfolio site, developed using Astro and inspired by retro VHS tape designs.',
     stack: ['astro', 'typescript', 'css', 'vite'],
     code: 'https://github.com/dannyedhouse/portfolio',
-    image: VHS,
+    image: vhsTapes,
   },
 ]

@@ -14,34 +14,30 @@ const { index, kind, title, blurb, stack, href, code, flip = false, image } = pr
 
 <article class:list={{ flip }} data-project>
   <div class="stage">
-    <div class="crt">
-      <div class="bezel">
-        <div class:list={['glass', { shot: image }]}>
-          {image && (
-            <Picture
-              src={image}
-              formats={['avif', 'webp']}
-              fallbackFormat="webp"
-              widths={[720, 1100, 1440]}
-              sizes="(max-width: 800px) calc(100vw - 52px), min(46vw, 640px)"
-              alt={title}
-              quality={85}
-              pictureAttributes={{ class: 'frame' }}
-              class="frame-img"
-            />
-          )}
-        </div>
-        <div class="chin" aria-hidden="true">
-          <span class="drive"></span>
-          <span class="btn"></span>
-        </div>
+    <div class="bezel">
+      <div class="glass">
+        <Picture
+          src={image}
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
+          widths={[720, 1100, 1440]}
+          sizes="(max-width: 800px) calc(100vw - 52px), min(46vw, 640px)"
+          alt={title}
+          quality={85}
+          pictureAttributes={{ class: 'frame' }}
+          class="frame-img"
+        />
+      </div>
+      <div class="chin" aria-hidden="true">
+        <span class="drive"></span>
+        <span class="btn"></span>
       </div>
     </div>
   </div>
   <div class="copy">
     <div class="idx">{index} · {kind}</div>
     <h3>{title}</h3>
-    {blurb && <p>{blurb}</p>}
+    <p>{blurb}</p>
     <TechPills items={stack} />
     {(href || code) && (
       <div class="acts">
@@ -87,10 +83,6 @@ const { index, kind, title, blurb, stack, href, code, flip = false, image } = pr
     overflow: hidden;
     border-radius: 18px;
     background: color-mix(in srgb, var(--ink) 4%, var(--paper));
-  }
-
-  .glass:not(.shot) {
-    aspect-ratio: 2 / 1;
   }
 
   .chin {
@@ -158,12 +150,12 @@ const { index, kind, title, blurb, stack, href, code, flip = false, image } = pr
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    [data-project].wait .crt {
+    [data-project].wait .stage {
       opacity: 0;
       transform: translateY(28px);
     }
 
-    [data-project].wait.in .crt {
+    [data-project].wait.in .stage {
       opacity: 1;
       transform: none;
       transition:
@@ -187,10 +179,6 @@ const { index, kind, title, blurb, stack, href, code, flip = false, image } = pr
       border-top: 1px solid var(--hair);
       padding-top: 44px;
       margin-top: 44px;
-    }
-
-    .stage {
-      width: 100%;
     }
 
     .chin {

@@ -1,21 +1,14 @@
 ---
-import archivoBlack from '../fonts/archivo-black.woff2?url';
-import shareTechMono from '../fonts/share-tech-mono.woff2?url';
-import '../styles/tokens.css';
-import '../styles/globals.css';
-import Grain from '../components/effects/Grain.astro';
-import ColorRail from '../components/effects/ColorRail.astro';
-import Nav from '../components/Nav.astro';
+import archivoBlack from '../fonts/archivo-black.woff2?url'
+import shareTechMono from '../fonts/share-tech-mono.woff2?url'
+import '../styles/tokens.css'
+import '../styles/globals.css'
+import Grain from '../components/effects/Grain.astro'
+import ColorRail from '../components/effects/ColorRail.astro'
+import Nav from '../components/Nav.astro'
 
-interface Props {
-  title?: string;
-  description?: string;
-}
-
-const {
-  title = 'Danny Edhouse',
-  description = 'A creative and product-minded full-stack engineer with an eye for design!',
-} = Astro.props;
+const title = 'Danny Edhouse'
+const description = 'A creative and product-minded full-stack engineer with an eye for design!'
 ---
 
 <!doctype html>
