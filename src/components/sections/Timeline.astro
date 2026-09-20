@@ -182,30 +182,20 @@ import { timeline } from '../../data/timeline'
 </style>
 
 <script>
+  import { onScroll } from '../../lib/scroll'
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const track = document.querySelector<HTMLElement>('[data-track]')
   const fill = track?.querySelector<HTMLElement>('.fill')
   if (track && fill) {
-    const paint = () => {
-      const r = track.getBoundingClientRect()
-      const p = Math.max(0, Math.min(1, (innerHeight * 0.5 - r.top) / r.height))
-      fill.style.height = `${p * r.height}px`
-    }
-
     if (reduce) {
       fill.style.height = '100%'
     } else {
-      let raf = 0
-      const onMove = () => {
-        if (raf) return
-        raf = requestAnimationFrame(() => {
-          paint()
-          raf = 0
-        })
-      }
-      paint()
-      addEventListener('scroll', onMove, { passive: true })
-      addEventListener('resize', onMove)
+      onScroll(() => {
+        const r = track.getBoundingClientRect()
+        const p = Math.max(0, Math.min(1, (innerHeight * 0.5 - r.top) / r.height))
+        fill.style.height = `${p * r.height}px`
+      })
     }
   }
 </script>

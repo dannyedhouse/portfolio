@@ -20,6 +20,8 @@
 </nav>
 
 <script>
+  import { onScroll } from '../lib/scroll'
+
   const nav = document.querySelector('[data-site-nav]')
   if (nav) {
     const toggle = nav.querySelector<HTMLInputElement>('.nav-open')
@@ -41,17 +43,7 @@
       }
     }
 
-    spy()
-    let raf = 0
-    const onMove = () => {
-      if (raf) return
-      raf = requestAnimationFrame(() => {
-        spy()
-        raf = 0
-      })
-    }
-    addEventListener('scroll', onMove, { passive: true })
-    addEventListener('resize', onMove)
+    onScroll(spy)
 
     for (const a of links) {
       a.addEventListener('click', () => {
@@ -112,7 +104,6 @@
   .nav-toggle {
     position: relative;
     display: none;
-    letter-spacing: var(--track-nav);
     cursor: pointer;
     color: var(--ink);
   }

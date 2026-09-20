@@ -22,7 +22,7 @@ Icons: `astro-icon` + Simple Icons. Images: `astro:assets` `Picture`. Skills go 
 - `src/components/ui/` — ActionLink, TechPills, ProjectCard
 - `src/components/effects/` — Grain, ColorRail
 - `src/data/` — projects, timeline, skills, info
-- `src/lib/` — `dates.ts`, `reveal.ts`
+- `src/lib/` — `dates.ts`, `reveal.ts`, `scroll.ts`
 
 Sections share `SectionHead` + `.sleeve`. Nav stays chrome, not in `ui/`.
 
