@@ -20,7 +20,7 @@ Icons: `astro-icon` + Simple Icons. Images: `astro:assets` `Picture`. Skills go 
 
 - `src/components/sections/` — Hero, About, Projects, Timeline, Contact
 - `src/components/ui/` — ActionLink, TechPills, ProjectCard
-- `src/components/effects/` — Grain, ColorRail
+- `src/components/effects/` — Grain, ColorRail, MacCanvas
 - `src/data/` — projects, timeline, skills, info
 - `src/lib/` — `dates.ts`, `reveal.ts`, `scroll.ts`
 
@@ -34,7 +34,7 @@ Hamburger stays usable at 320px. Left colour rail stays. Name stays in the hero.
 
 Project stills: native aspect, contain, tight bezel, rounded corners, no blur, not 3D. Section kickers stay; no right-side asides.
 
-Cassette / CRT canvas are later. Don't sneak them back in.
+Hero canvas is `MacCanvas` — line-art Mac. On screen: boot, desktop, Terminal opens and types itself, then it settles. Plays once, no loop. Keyboard only, no mouse hardware.
 
 Reuse first. Small slices. Don't commit unless asked. If it looks AI, cut it. Don't rewrite copy for "polish" unless asked.
 

@@ -1,20 +1,20 @@
 ---
 import { Image } from 'astro:assets'
 import vhsMark from '../../assets/VHS.webp'
-import TapeCanvas from '../effects/TapeCanvas.astro'
+import MacCanvas from '../effects/MacCanvas.astro'
 ---
 
 <section id="home">
   <div class="arrow" aria-hidden="true"></div>
   <h1>
     <span class="hi">Hi there 👋</span>
-    <span class="title">I'm a product engineer.</span>
+    <span class="title">I'm a Software Engineer</span>
   </h1>
   <p class="ident">Danny Edhouse</p>
   <p class="lede">
     A creative and product-minded full-stack engineer with an eye for design!
   </p>
-  <TapeCanvas />
+  <MacCanvas />
   <div class="foot">
     <div class="badge">
       <Image src={vhsMark} alt="VHS" class="vhs" height={42} densities={[1, 2]} />
