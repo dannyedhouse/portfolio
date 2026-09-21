@@ -90,6 +90,17 @@ const iconName = copy
 </style>
 
 <script>
+  import { scrollToId } from '../../lib/scroll'
+
+  for (const el of document.querySelectorAll<HTMLAnchorElement>('a.act[href^="#"]')) {
+    if (el.dataset.scrollBound) continue
+    el.dataset.scrollBound = ''
+    el.addEventListener('click', (event) => {
+      const id = el.getAttribute('href')?.slice(1) ?? ''
+      if (scrollToId(id)) event.preventDefault()
+    })
+  }
+
   for (const el of document.querySelectorAll<HTMLElement>('[data-copy]')) {
     if (el.dataset.copyBound) continue
     el.dataset.copyBound = ''

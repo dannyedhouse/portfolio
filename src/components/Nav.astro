@@ -20,7 +20,7 @@
 </nav>
 
 <script>
-  import { onScroll } from '../lib/scroll'
+  import { onScroll, scrollToId } from '../lib/scroll'
 
   const nav = document.querySelector('[data-site-nav]')
   if (nav) {
@@ -46,7 +46,9 @@
     onScroll(spy)
 
     for (const a of links) {
-      a.addEventListener('click', () => {
+      a.addEventListener('click', (event) => {
+        const id = a.getAttribute('href')?.slice(1) ?? ''
+        if (scrollToId(id)) event.preventDefault()
         if (toggle) toggle.checked = false
       })
     }
