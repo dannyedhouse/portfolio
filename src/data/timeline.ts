@@ -21,7 +21,7 @@ export const timeline: Chapter[] = [
       'Working on greenfield projects for globally recognised clients, predominantly with React, TypeScript and Node.JS',
       'Included working on the Mastercard Card Design Studio - utilising generative AI to enable custom, compliant card designs with fluid motion animations.',
     ],
-    stack: ['typescript', 'react', 'nextjs', 'azure'],
+    stack: ['typescript', 'react', 'nextjs', 'claude', 'azure'],
   },
   {
     year: '2021',
