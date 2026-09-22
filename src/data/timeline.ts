@@ -1,6 +1,6 @@
 import type { SkillId } from './skills'
 
-export type Chapter = {
+type Chapter = {
   year: string
   span: string
   title: string
