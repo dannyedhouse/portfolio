@@ -8,11 +8,19 @@
   .vignette {
     pointer-events: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    height: 100lvh;
   }
 
   .grain {
-    inset: -40px;
+    top: -40px;
+    left: -40px;
+    right: -40px;
+    height: calc(100vh + 80px);
+    height: calc(100lvh + 80px);
     z-index: var(--z-grain);
     opacity: 0.055;
     mix-blend-mode: multiply;

@@ -32,6 +32,7 @@
       .map((a) => a.getAttribute('href')?.slice(1) ?? '')
       .filter((id) => document.getElementById(id))
 
+    let active = ''
     const spy = () => {
       const mid = innerHeight * 0.28
       let current = ids[0]
@@ -40,6 +41,8 @@
         if (!el) continue
         if (el.getBoundingClientRect().top <= mid) current = id
       }
+      if (current === active) return
+      active = current
       for (const a of links) {
         a.classList.toggle('on', a.getAttribute('href') === `#${current}`)
       }

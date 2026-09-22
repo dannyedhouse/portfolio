@@ -49,9 +49,36 @@ import { timeline } from '../../data/timeline'
 
   .fill {
     width: 3px;
-    height: 0;
+    height: 100%;
     margin-left: -1px;
     background: var(--ink);
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .fill {
+        animation: fill linear both;
+        animation-timeline: view();
+        animation-range: cover 50vh cover calc(100% - 50vh);
+      }
+
+      @keyframes fill {
+        from {
+          transform: scaleY(0);
+        }
+        to {
+          transform: scaleY(1);
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fill {
+        transform: scaleY(1);
+      }
+    }
   }
 
   article {
@@ -187,14 +214,14 @@ import { timeline } from '../../data/timeline'
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const track = document.querySelector<HTMLElement>('[data-track]')
   const fill = track?.querySelector<HTMLElement>('.fill')
-  if (track && fill) {
+  if (track && fill && !CSS.supports('animation-timeline', 'view()')) {
     if (reduce) {
-      fill.style.height = '100%'
+      fill.style.transform = 'scaleY(1)'
     } else {
       onScroll(() => {
         const r = track.getBoundingClientRect()
         const p = Math.max(0, Math.min(1, (innerHeight * 0.5 - r.top) / r.height))
-        fill.style.height = `${p * r.height}px`
+        fill.style.transform = `scaleY(${p})`
       })
     }
   }
