@@ -7,7 +7,9 @@ import { projects } from '../../data/projects'
 <section id="projects" class="sleeve">
   <SectionHead title="Projects" kicker="Some of my personal projects" />
   <div class="list">
-    {projects.map((project) => <ProjectCard project={project} />)}
+    {projects.map((project) => (
+      <ProjectCard project={project} />
+    ))}
   </div>
 </section>
 

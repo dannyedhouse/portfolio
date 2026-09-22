@@ -42,7 +42,8 @@ export const projects: Project[] = [
     index: '03',
     kind: 'WEB',
     title: 'Portfolio v1.0',
-    blurb: 'My personal portfolio site, developed using Astro and inspired by retro VHS tape designs.',
+    blurb:
+      'My personal portfolio site, developed using Astro and inspired by retro VHS tape designs.',
     stack: ['astro', 'typescript', 'css', 'vite'],
     code: 'https://github.com/dannyedhouse/portfolio',
     image: vhsTapes,

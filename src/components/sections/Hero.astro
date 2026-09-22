@@ -11,16 +11,20 @@ import MacCanvas from '../effects/MacCanvas.astro'
     <span class="title">I'm a Software Engineer</span>
   </h1>
   <p class="ident">Danny Edhouse</p>
-  <p class="lede">
-    A creative and product-minded full-stack engineer with an eye for design!
-  </p>
+  <p class="lede">A creative and product-minded full-stack engineer with an eye for design!</p>
   <MacCanvas />
   <div class="foot">
     <div class="badge">
       <Image src={vhsMark} alt="VHS" class="vhs" height={42} densities={[1, 2]} />
-      <span class="meta">HQ<br />Supercolor</span>
+      <span class="meta">
+        HQ
+        <br />
+        Supercolor
+      </span>
     </div>
-    <a href="#about" class="scroll">SCROLL <span>↓</span></a>
+    <a href="#about" class="scroll">
+      SCROLL <span>↓</span>
+    </a>
   </div>
 </section>
 
@@ -31,8 +35,7 @@ import MacCanvas from '../effects/MacCanvas.astro'
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(80px, 12vh, 150px) var(--page-inline) clamp(18px, 3vh, 34px)
-      var(--page-left);
+    padding: clamp(80px, 12vh, 150px) var(--page-inline) clamp(18px, 3vh, 34px) var(--page-left);
   }
 
   .arrow {

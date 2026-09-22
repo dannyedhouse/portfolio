@@ -17,28 +17,26 @@ const iconName = copy
   : (icon ?? (variant === 'code' && external ? 'simple-icons:github' : undefined))
 ---
 
-{
-  copy ? (
-    <button type="button" class:list={['act', variant]} data-copy={copy}>
-      {label}
-    </button>
-  ) : (
-    <a
-      href={href}
-      class:list={['act', variant]}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noreferrer' : undefined}
-    >
-      {iconName && <Icon name={iconName} size={14} aria-hidden="true" />}
-      {label}
-      {mark && (
-        <span class="mark" aria-hidden="true">
-          ↗
-        </span>
-      )}
-    </a>
-  )
-}
+{copy ? (
+  <button type="button" class:list={['act', variant]} data-copy={copy}>
+    {label}
+  </button>
+) : (
+  <a
+    href={href}
+    class:list={['act', variant]}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noreferrer' : undefined}
+  >
+    {iconName && <Icon name={iconName} size={14} aria-hidden="true" />}
+    {label}
+    {mark && (
+      <span class="mark" aria-hidden="true">
+        ↗
+      </span>
+    )}
+  </a>
+)}
 
 <style>
   .act {

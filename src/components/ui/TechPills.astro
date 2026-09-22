@@ -11,21 +11,19 @@ const { items, proficient = [] } = Astro.props
 const proficientSet = new Set(proficient)
 ---
 
-{
-  items.length > 0 && (
-    <ul class="pills">
-      {items.map((id) => {
-        const skill = skillCatalog[id]
-        return (
-          <li data-proficient={proficientSet.has(id) ? '' : undefined}>
-            <Icon name={skill.icon} size={15} aria-hidden="true" />
-            <span>{skill.label}</span>
-          </li>
-        )
-      })}
-    </ul>
-  )
-}
+{items.length > 0 && (
+  <ul class="pills">
+    {items.map((id) => {
+      const skill = skillCatalog[id]
+      return (
+        <li data-proficient={proficientSet.has(id) ? '' : undefined}>
+          <Icon name={skill.icon} size={15} aria-hidden="true" />
+          <span>{skill.label}</span>
+        </li>
+      )
+    })}
+  </ul>
+)}
 
 <style>
   .pills {

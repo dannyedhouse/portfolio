@@ -12,7 +12,13 @@ const year = new Date().getFullYear()
   <div class="acts">
     <ActionLink variant="site" label="Copy my email" copy={info.email} />
     <ActionLink href={info.github} variant="code" label="GITHUB" mark />
-    <ActionLink href={info.linkedin} variant="code" icon="simple-icons:linkedin" label="LINKEDIN" mark />
+    <ActionLink
+      href={info.linkedin}
+      variant="code"
+      icon="simple-icons:linkedin"
+      label="LINKEDIN"
+      mark
+    />
   </div>
   <noscript>
     <p class="fallback">

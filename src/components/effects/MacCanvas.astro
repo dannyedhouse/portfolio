@@ -368,7 +368,11 @@
           const toIcon = seg(atWake, atPick)
           const toPark = seg(atZoom, atShow)
           const px = lerp(lerp(sx + sw * 0.2, icx - iw * 0.14, toIcon), wx + ww * 0.72, toPark)
-          const py = lerp(lerp(sy + sh * 0.66, icy + gap + iw * 0.3, toIcon), wy + wh * 0.66, toPark)
+          const py = lerp(
+            lerp(sy + sh * 0.66, icy + gap + iw * 0.3, toIcon),
+            wy + wh * 0.66,
+            toPark,
+          )
           const cs = Math.max(7, sh * 0.09)
           ctx.beginPath()
           for (const [i, [ax, ay]] of arrow.entries()) {
