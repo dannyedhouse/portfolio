@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ActionLink from '../components/ui/ActionLink.astro'
+---
+
+<Layout title="404" nav={false}>
+  <section class="sleeve miss">
+    <h1>404</h1>
+    <figure class="mac" aria-hidden="true">
+      <svg viewBox="0 0 100 106" fill="none">
+        <rect x="1" y="1" width="98" height="104" rx="7" stroke="currentColor" stroke-width="2" />
+        <rect
+          x="2.5"
+          y="2.2"
+          width="95"
+          height="101.6"
+          rx="5"
+          stroke="currentColor"
+          stroke-width="1"
+          opacity="0.35"
+        />
+        <rect
+          x="10.5"
+          y="8.5"
+          width="79"
+          height="58.5"
+          rx="5"
+          stroke="currentColor"
+          stroke-width="1.2"
+        />
+        <rect
+          x="13.7"
+          y="11.7"
+          width="72.6"
+          height="52.1"
+          rx="2.8"
+          stroke="currentColor"
+          stroke-width="1.1"
+        />
+        <path
+          d="M32 28l10 10M42 28l-10 10M58 28l10 10M68 28l-10 10"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <path
+          d="M38 52c6-5 18-5 24 0"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <rect
+          x="27"
+          y="78"
+          width="46"
+          height="4.8"
+          rx="2"
+          stroke="currentColor"
+          stroke-width="1"
+          opacity="0.45"
+        />
+        <circle cx="85.5" cy="80.5" r="1.4" fill="currentColor" />
+        <path d="M44 87.5h12" stroke="currentColor" stroke-width="1" opacity="0.35" />
+      </svg>
+    </figure>
+    <div class="back">
+      <ActionLink href="/" variant="code" label="▲ BACK TO HOME" />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .miss {
+    min-height: 100lvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-top: 0;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(38px, 7vw, 96px);
+    line-height: 0.9;
+    letter-spacing: var(--display-track);
+    text-transform: uppercase;
+    text-shadow: var(--fringe);
+  }
+
+  .mac {
+    margin: 36px 0 0;
+    width: 118px;
+    color: var(--ink);
+  }
+
+  .mac svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .back {
+    margin-top: 28px;
+  }
+</style>

@@ -7,7 +7,7 @@ interface Props {
 const { title, kicker } = Astro.props
 ---
 
-<header>
+<header data-head>
   <h2>{title}</h2>
   <p class="kicker">{kicker}</p>
   <div class="rule"></div>
@@ -37,5 +37,17 @@ const { title, kicker } = Astro.props
     width: 34px;
     height: 2px;
     background: var(--ink);
+    transform-origin: left;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-head].wait .rule {
+      transform: scaleX(0);
+    }
+
+    [data-head].wait.in .rule {
+      transform: none;
+      transition: transform 0.7s ease;
+    }
   }
 </style>

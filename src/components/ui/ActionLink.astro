@@ -73,6 +73,12 @@ const iconName = icon ?? (variant === 'code' && external ? 'simple-icons:github'
     color: var(--paper);
   }
 
+  .site.copied,
+  .site.copied:hover {
+    background: var(--mg);
+    box-shadow: var(--fringe-strong);
+  }
+
   .code {
     background: transparent;
     color: var(--ink);
@@ -88,9 +94,9 @@ const iconName = icon ?? (variant === 'code' && external ? 'simple-icons:github'
 <script>
   import { scrollToId } from '../../lib/scroll'
 
-  for (const el of document.querySelectorAll<HTMLAnchorElement>('a.act[href^="#"]')) {
+  for (const el of document.querySelectorAll<HTMLAnchorElement>('a.act[href*="#"]')) {
     el.addEventListener('click', (event) => {
-      const id = el.getAttribute('href')?.slice(1) ?? ''
+      const id = el.getAttribute('href')?.split('#')[1] ?? ''
       if (scrollToId(id)) event.preventDefault()
     })
   }
@@ -107,8 +113,10 @@ const iconName = icon ?? (variant === 'code' && external ? 'simple-icons:github'
       const label = el.dataset.copyLabel ?? el.textContent?.trim() ?? ''
       el.dataset.copyLabel = label
       el.textContent = 'Copied'
+      el.classList.add('copied')
       setTimeout(() => {
         el.textContent = label
+        el.classList.remove('copied')
       }, 1600)
     })
   }

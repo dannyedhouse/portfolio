@@ -7,8 +7,17 @@ import Grain from '../components/effects/Grain.astro'
 import ColorRail from '../components/effects/ColorRail.astro'
 import Nav from '../components/Nav.astro'
 
-const title = 'Danny Edhouse - Software Engineer'
-const description = 'A creative and product-minded full-stack engineer with an eye for design!'
+interface Props {
+  title?: string
+  description?: string
+  nav?: boolean
+}
+
+const {
+  title = 'Danny Edhouse - Software Engineer',
+  description = 'A creative and product-minded full-stack engineer with an eye for design!',
+  nav = true,
+} = Astro.props
 ---
 
 <!doctype html>
@@ -29,7 +38,7 @@ const description = 'A creative and product-minded full-stack engineer with an e
     </a>
     <Grain />
     <ColorRail />
-    <Nav />
+    {nav && <Nav />}
     <main id="main">
       <slot />
     </main>

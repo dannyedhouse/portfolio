@@ -79,6 +79,7 @@ const { index, kind, title, blurb, stack, href, code, flip = false, image } = pr
     border-radius: 22px;
     background: var(--paper);
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
+    transition: box-shadow 0.2s ease;
   }
 
   .glass {
@@ -107,6 +108,17 @@ const { index, kind, title, blurb, stack, href, code, flip = false, image } = pr
     height: 7px;
     border-radius: 50%;
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent);
+    transition: background 0.2s ease;
+  }
+
+  article:hover .bezel,
+  article:focus-within .bezel {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 28%, transparent);
+  }
+
+  article:hover .btn,
+  article:focus-within .btn {
+    background: var(--ink);
   }
 
   .frame,
@@ -163,6 +175,13 @@ const { index, kind, title, blurb, stack, href, code, flip = false, image } = pr
       transition:
         opacity 0.9s ease,
         transform 0.9s ease;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bezel,
+    .btn {
+      transition: none;
     }
   }
 
