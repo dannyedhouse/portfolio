@@ -56,21 +56,23 @@ import { timeline } from '../../data/timeline'
     transform-origin: top;
   }
 
+  @keyframes rail-fill {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
       .fill {
-        animation: fill linear both;
+        animation-name: rail-fill;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
         animation-timeline: view();
         animation-range: cover 50vh cover calc(100% - 50vh);
-      }
-
-      @keyframes fill {
-        from {
-          transform: scaleY(0);
-        }
-        to {
-          transform: scaleY(1);
-        }
       }
     }
 
