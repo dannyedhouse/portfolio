@@ -13,3 +13,7 @@ The visual design is inspired by [this albums](https://www.discogs.com/master/12
 - Retro/VHS-inspired visual effects and interactions
 
 - Optimised images (AVIF/WebP) and a small amount of client-side JavaScript
+
+## 📄 License
+
+Released under the MIT License. See [LICENSE](LICENSE).
